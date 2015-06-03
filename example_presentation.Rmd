@@ -1,0 +1,32 @@
+---
+title: "Example Presentation"
+author: "Moutusi and Matt"
+affiliation: "Milken Institute Center for Financial Markets"
+date: "06/02/2015"
+output: ioslides_presentation
+runtime: shiny
+smaller: true
+---
+
+## Presentation
+
+This is an example presentation.  We'll use it to:
+
+- get to know RMarkdown
+- get to know git/github.
+
+## Shiny App
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(threejs)
+inputPanel(    
+   sliderInput("axis1", label = "Max Axis 1", max = .5, min = 0.01, value = .20, step = .01),
+   sliderInput("axis2", label = "Max Axis 2", max = .2, min = 0.01, value = .05, step = .01)
+   )
+
+
+renderPlot({
+  surf <- cbind(expand.grid(seq(.01, input$axis1, by = .01), seq(.01, input$axis2, by = .01)), 1)
+  plot(as.matrix(surf[,1]))
+})
+```
